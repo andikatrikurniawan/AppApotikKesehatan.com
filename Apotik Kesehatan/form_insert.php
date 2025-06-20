@@ -42,7 +42,7 @@
             <input type="date" name="tanggal" class="form-control" required>
         </div>
         <button class="btn btn-primary ms-3" type="submit">Simpan</button>
-        <a href="indexApotik.php" class="btn btn-secondary ms-3">Kembali</a><br><br>
+        <a href="indexApotik.html" class="btn btn-secondary ms-3">Kembali</a><br><br>
     </form>
 
 <script>
