@@ -26,7 +26,7 @@ $data = $koneksi->query("SELECT * FROM pasokan p
 <body class="container mt-4">
   <h2>Edit Data Pasokan Obat</h2>
 <form id="formEdit">
-    <input type="hidden" name="id_pasokan" value="<?= $data['id_pasokan'] ?>">
+    <input type="hidden" name="id" value="<?= $data['id_pasokan'] ?>">
 
         <label>Obat</label>
       <select name="id_obat" class="form-select">
