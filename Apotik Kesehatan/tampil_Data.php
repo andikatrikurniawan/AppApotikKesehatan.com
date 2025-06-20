@@ -40,7 +40,7 @@ include ('koneksi.php');
                 <td><?= $row['jumlah'] ?></td>
                 <td><?= $row['tanggal'] ?></td>
                 <td>
-                    <a href="form_edit.html" class="btn btn-warning btn-sm ms-3">Edit</a>
+                    <a href="form_edit.php" class="btn btn-warning btn-sm ms-3">Edit</a>
                     <a href="aksi_hapus.php?id=<?= $row['id_pasokan'] ?>" class="btn btn-danger btn-sm ms-3" onclick="return confirm('Yakin hapus?')">Hapus</a>
                 </td>
             </tr>
