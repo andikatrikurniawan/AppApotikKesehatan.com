@@ -50,18 +50,50 @@
     }
 
     function hapusApotik(id) {
-      if (confirm("Yakin ingin menghapus?")) {
-        $.post('aksi_hapus.php', { id: id }, function(res) {
-          alert(res);
-          loadApotik();
-        });
+    if (confirm('Yakin ingin menghapus data ini?')) {
+      $.ajax({
+        url: 'aksi_hapus.php',
+        type: 'POST',
+        data: { id: id },
+        success: function(res) {
+          alert(res);         // tampilkan alert respons
+          loadApotik();      // reload data pegawai
+        },
+        error: function() {
+          alert('Gagal menghapus data.');
+        }
+      });
+    }
+  }
+
+  // AJAX EDIT
+$(document).on('click', '.btnEdit', function () {
+    var id = $(this).data('id');
+    $.get('form_edit.php', { id: id }, function (res) {
+      $('#modalContent').html(res);
+      var modal = new bootstrap.Modal(document.getElementById('modalEdit'));
+      modal.show();
+    });
+  });
+
+  // Letakkan handler submit form di sini, agar selalu aktif meski form di-load dinamis
+  $(document).on('submit', '#formEdit', function(e){
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: 'aksi_edit.php',
+      data: $(this).serialize(),
+      success: function(res) {
+        alert(res);
+        // tutup modal dan reload halaman
+        $('#modalEdit').modal('hide');
+        loadApotik();
+      },
+      error: function(xhr) {
+        alert("Error: " + xhr.responseText);
       }
-    }
-
-    function editApotik(id) {
-      $('#formArea').load('aksi_edit.php?id=' + id);
-    }
-
+    });
+  });
     $(document).ready(function() {
       loadApotik();
     });

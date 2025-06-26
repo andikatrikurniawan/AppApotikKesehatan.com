@@ -1,6 +1,6 @@
 <?php
 include ('koneksi.php');
-$id = $_GET['id'];
+$id = $_POST['id'];
 mysqli_query($koneksi, "DELETE FROM pasokan WHERE id_pasokan='$id'");
-header("Location: indexApotik.php");
+echo "Data Pasokan Berhasil DiHapus";
 ?>

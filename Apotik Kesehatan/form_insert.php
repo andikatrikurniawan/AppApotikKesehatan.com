@@ -1,21 +1,16 @@
 <?php include ('koneksi.php'); 
 ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <form id="formTambah">
   <div class="mb-3">
             <div class="mb-3">
             <label>Nama Admin</label>
             <input type="text" name="nama" class="form-control" required>
         </div>
+            <div class="mb-3">
             <label>Obat</label>
-            <select name="id_obat" class="form-control">
-                <option value="">-- Pilih Obat --</option>
-                <?php
-                $obat = mysqli_query($koneksi, "SELECT * FROM obat");
-                while ($o = mysqli_fetch_assoc($obat)) {
-                    echo "<option value='{$o['id_obat']}'>{$o['nama_obat']}</option>";
-                }
-                ?>
-            </select>
+            <input type="text" name="obat" class="form-control" required>
+        </div>
         </div>
         <div class="mb-3">
             <label>Jenis</label>
@@ -41,8 +36,8 @@
             <label>Tanggal</label>
             <input type="date" name="tanggal" class="form-control" required>
         </div>
-        <button class="btn btn-primary ms-3" type="submit">Simpan</button>
-        <a href="indexApotik.php" class="btn btn-secondary ms-3">Kembali</a><br><br>
+        <button class="btn btn-primary ms-3" type="submit"><i class="fa-thin fa-floppy-disk"></i>  Simpan</button>
+       <button type="button" class="btn btn-outline-secondary" id="btnKembali"><i class="fa-solid fa-rotate-left"></i>  Kembali</button> <br><br>
     </form>
 
 <script>
@@ -54,6 +49,12 @@ $('#formTambah').submit(function(e){
     $('#dataApotik').load('tampil_Data.php').fadeIn;
   });
 });
+
+$('#btnKembali').click(function(){
+    $('#formArea').html('');
+    $('#dataPegawai').load('tampil_pegawai.php').fadeIn();
+    });
+
     $(function(){
     $('input[type="date"]').datepicker({
         dateFormat: "yy-mm-dd",

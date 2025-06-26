@@ -1,33 +1,33 @@
 <?php
-include ('koneksi.php');
+include('koneksi.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ambil data dari form
-    $id         = intval($_POST['id']);
-    $nama       = intval($_POST['id_obat']);
-    $jenis       = $koneksi->real_escape_string($_POST['jenis']);
-    $id_supplier = intval($_POST['id_supplier']);
-    $jumlah    = $koneksi->real_escape_string($_POST['jumlah']);
-    $tggl       = $koneksi->real_escape_string($_POST['tggl']);
+// Aktifkan error reporting saat pengembangan
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-    // Update tabel obat
-    $updateObat = $koneksi->query("
-        UPDATE pasokan SET 
-                id_obat = '$nama',
-                jenis  = '$jenis',
-                id_supplier = '$id_supplier',
-                jumlah = '$jumlah',
-                tanggal = '$tggl'
-                WHERE id_pasokan = '$id'
-            ");
-        
-    if ($updateObat) {
-        echo "Data Berhasil Diperbarui";
-    } else {
-        echo "Gagal memperbarui data: " . $koneksi->error;
-    }
+// Ambil data dari form
+$id = $_POST['id'];
+$nama = $_POST['nama_admin'];
+$obat = $_POST['nama_obat'];
+$jenis = $_POST['jenis'];
+$id_supplier = $_POST['id_supplier'];
+$jumlah = $_POST['jumlah'];
+$tanggal = $_POST['tanggal'];
+
+// Update ke database
+$query = $koneksi->query("UPDATE pasokan SET 
+    nama_obat = '$obat',
+    nama_admin = '$nama',
+    jenis = '$jenis',
+    id_supplier = '$id_supplier',
+    jumlah = '$jumlah',
+    tanggal = '$tanggal'
+    WHERE id_pasokan = '$id'
+");
+
+if ($query) {
+    echo "Data berhasil diperbarui.";
 } else {
-    echo "Permintaan tidak valid.";
+    echo "Gagal memperbarui data: " . $koneksi->error;
 }
 ?>
-
